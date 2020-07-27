@@ -1,0 +1,59 @@
+#!/bin/bash
+#author: Digitalis <info@digitalis.io>
+
+set -e
+
+TAG="cqlsh:3.11.7"
+
+function logo() {
+
+    echo "     _ _      _ _        _ _    "
+    echo "  __| (_)__ _(_) |_ __ _| (_)___"
+    echo ' / _` | / _` | |  _/ _` | | (_-<'
+    echo " \__,_|_\__, |_|\__\__,_|_|_/__/"
+    echo "        |___/                   "
+    echo ""
+}
+logo
+
+CQLSHRCFILE=""
+
+POSITIONAL=()
+while [[ $# -gt 0 ]]
+do
+key="$1"
+
+case $key in
+    --cqlshrcfile)
+    CQLSHRCFILE="$2"
+    echo "CQLSHRCFILE $CQLSHRCFILE"
+    shift # past argument
+    shift # past value
+    ;;
+esac
+done
+set -- "${POSITIONAL[@]}" # restore positional parameters
+
+function usage() {
+    cat <<EOF
+    Options:
+        --cqlshrcfile   The name of the cqlshrc file in the cqlshrc directory on the host. This directory is mounted in the docker container
+EOF
+
+}
+
+if [ -z ${CQLSHRCFILE} ]; then 
+    echo "cqlshrcfile argument is not set";
+    usage
+    exit 1
+fi
+
+# echo "Launching CQLSH docker container via docker compose"
+# docker-compose up
+
+if [[ "$(docker images -q ${TAG} 2> /dev/null)" == "" ]]; then
+  docker build --tag ${TAG} docker-cqlsh
+fi
+
+docker run -v $(pwd)/cqlshrc:/cqlshrc -it ${TAG} /bin/bash /cassandra/bin/cqlsh --cqlshrc ${CQLSHRCFILE}
+
