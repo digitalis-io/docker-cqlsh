@@ -55,5 +55,5 @@ if [[ "$(docker images -q ${TAG} 2> /dev/null)" == "" ]]; then
   docker build --tag ${TAG} docker-cqlsh
 fi
 
-docker run -v $(pwd)/cqlshrc:/cqlshrc -it ${TAG} /bin/bash /cassandra/bin/cqlsh --cqlshrc ${CQLSHRCFILE}
+docker run --rm -v $(pwd)/cqlshrc:/cqlshrc -it ${TAG} /bin/bash /cassandra/bin/cqlsh --cqlshrc ${CQLSHRCFILE}
 
