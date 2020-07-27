@@ -3,3 +3,4 @@ cqlshrc/*
 
 # exception to the rule
 !cqlshrc/.gitkeep
+!cqlshrc/cqlshrc.sample
