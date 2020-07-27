@@ -1,0 +1,5 @@
+# exclude everything
+cqlshrc/*
+
+# exception to the rule
+!cqlshrc/.gitkeep
