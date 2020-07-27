@@ -1,10 +1,11 @@
 # docker-cqlsh
-Docker Container for Cassandra CQLSH
+## Standalone Docker Container for launching Cassandra CQLSH and connecting to Apache Cassandra
 
-Put a cqlshrc file in the cqlshrc directory and pass this in to the cqlsh script via the command line.
+Place a cqlshrc file (https://cassandra.apache.org/doc/latest/tools/cqlsh.html#cqlshrc) in the cqlshrc directory (there is an example one there now) and pass this in to the cqlsh laucnger script via the command line.
 
-e.g ./cqlsh --cqlshrcfile /cqlshrc/cqlshrc.sample
+e.g 
+```./cqlsh --cqlshrcfile /cqlshrc/cqlshrc.sample```
 
-This will build the docker image locally if it doesnt exist, mount the cqlshrc directory on the host into the container and then launch cqlsh by passing in the cqlshrc file command line argument.
+This will build the docker image locally if it doesnt already exist, mount the cqlshrc directory on the host into the container and then launch cqlsh by passing in the cqlshrc file command line argument.
 
 The container volume is /cqlshrc - if your using SSL and have any certs, pems etc.. you need to reference to connect then just put them in the cqlshrc host machine directory and they will be available to use in the container.
