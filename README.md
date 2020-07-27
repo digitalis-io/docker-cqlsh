@@ -8,4 +8,4 @@ e.g
 
 This will build the docker image locally if it doesnt already exist, mount the cqlshrc directory on the host into the container and then launch cqlsh by passing in the cqlshrc file command line argument.
 
-The container volume is /cqlshrc - if your using SSL and have any certs, pems etc.. you need to reference to connect then just put them in the cqlshrc host machine directory and they will be available to use in the container.
+The host directory is mounted in the container volume at ```/cqlshrc``` - if your using SSL and have any certs, pems etc.. you need to reference to connect then just put them in the cqlshrc host machine directory and they will be available to use in the container at that path. Make sure that the path to them in the cqlshrc files is pointing at the container path.
