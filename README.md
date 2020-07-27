@@ -1,7 +1,7 @@
 # docker-cqlsh
 ## Standalone Docker Container for launching Cassandra CQLSH and connecting to Apache Cassandra
 
-Place a cqlshrc file (https://cassandra.apache.org/doc/latest/tools/cqlsh.html#cqlshrc) in the cqlshrc directory (there is an example one there now) and pass this in to the cqlsh laucnger script via the command line.
+Place a cqlshrc file (https://cassandra.apache.org/doc/latest/tools/cqlsh.html#cqlshrc) in the cqlshrc directory (there is an example one there now) and pass this in to the cqlsh launcher script via the command line.
 
 e.g 
 ```./cqlsh --cqlshrcfile /cqlshrc/cqlshrc.sample```
